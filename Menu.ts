@@ -6,14 +6,15 @@ export function main() {
   let opcao: number;
 
   // Cria novas instâncias (Objetos) da Classe Conta
-  const c1 = new Conta(1, 123, 1, "Jonas", 100000);
+  const c1 = new Conta(1, 1, 1, "Paulo", 1000);
   c1.visualizar();
-  console.log(c1.sacar(200000.00));
+  c1.trocaConta(2);
   c1.visualizar();
 
-  const c2 = new Conta(2, 123, 2, "Aline", 200000);
+  const c2 = new Conta(1, 0o1, 2, "Aline", 200000);
   c2.visualizar();
   c2.depositar(2000);
+  c2.sacar(1000);
   c2.visualizar();
 
   while (true) {
@@ -109,6 +110,13 @@ export function main() {
         break;
     }
   }
+}
+
+function formatToBRL(value: number): string {
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(value);
 }
 
 export function sobre(): void {

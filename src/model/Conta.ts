@@ -58,6 +58,13 @@ export class Conta {
     this._titular = titular;
     this._saldo = saldo;
   }
+  public trocaConta(valor: number) {
+    if (valor == 1) {
+      this._tipo = 1;
+    } else if (valor == 2) {
+      this._tipo = 2;
+    }
+  }
 
   public sacar(valor: number): boolean {
     if (valor >= this._saldo) {
@@ -68,16 +75,16 @@ export class Conta {
     return true;
   }
 
-public depositar(valor: number){
+  public depositar(valor: number) {
     this._saldo += valor;
-}
+  }
 
   public visualizar() {
-    let tipo: string = "";
+    var tipo: string = "";
 
     switch (this._tipo) {
       case 1:
-        tipo = "Conta Correnta";
+        tipo = "Conta Corrente";
         break;
       case 2:
         tipo = "Conta Poupança";
@@ -91,6 +98,13 @@ public depositar(valor: number){
     console.log("Agência: " + this._agencia);
     console.log("Tipo da Conta: " + tipo);
     console.log("Titular: " + this._titular);
-    console.log("Saldo: " + this._saldo.toFixed(2));
+    console.log("Saldo: " + formatToBRL(this._saldo));
   }
+}
+
+function formatToBRL(value: number): string {
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(value);
 }
