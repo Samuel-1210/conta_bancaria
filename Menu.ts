@@ -7,22 +7,6 @@ import { ContaPoupanca } from "./src/model/ContaPoupanca";
 export function main() {
   let opcao: number;
 
-  // //  Cria novas instâncias (Objetos) da Classe Conta
-  // const c1 = new Conta(1, 1, 1, "Paulo", 1000);
-  // c1.visualizar();
-  // c1.trocaConta(2);
-  // c1.visualizar();
-
-  // const c2 = new Conta(2, 1, 2, "Aline", 200000);
-  // c2.visualizar();
-  // c2.depositar(2000);
-  // c2.sacar(1000);
-  // c2.visualizar();
-  // c2.trocaConta(1);
-  // c2.visualizar();
-
-  // // Contas Correntes
-
   const contac = new ContaCorrente(3, 789, 1, "Andressa", 100000, 1000);
   contac.visualizar();
   contac.sacar(100500);
