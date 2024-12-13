@@ -1,3 +1,7 @@
+import { colors } from "../util/Colors";
+
+// A classe Conta é uma classe abstrata que serve como base para tipos específicos de contas bancárias
+// Ela contém os dados comuns a todas as contas, como número, agência, tipo, titular e saldo
 export abstract class Conta {
   private _numero: number;
   private _agencia: number;
@@ -58,13 +62,6 @@ export abstract class Conta {
     this._titular = titular;
     this._saldo = saldo;
   }
-  public trocaConta(valor: number) {
-    if (valor == 1) {
-      this._tipo = 1;
-    } else if (valor == 2) {
-      this._tipo = 2;
-    }
-  }
 
   public sacar(valor: number): boolean {
     if (valor >= this._saldo) {
@@ -91,14 +88,20 @@ export abstract class Conta {
         break;
       default:
     }
-    console.log("\n\n*****************************************************");
+
+    console.log(
+      colors.fg.magentastrong,
+      "\n\n*****************************************************"
+    );
     console.log("Dados da Conta:");
-    console.log("*****************************************************");
-    console.log("Numero da Conta: " + this._numero);
+    console.log(
+      "*****************************************************" + colors.reset
+    );
+    console.log(colors.fg.magenta, "Numero da Conta: " + this._numero);
     console.log("Agência: " + this._agencia);
     console.log("Tipo da Conta: " + tipo);
     console.log("Titular: " + this._titular);
-    console.log("Saldo: " + formatToBRL(this._saldo));
+    console.log("Saldo: " + formatToBRL(this._saldo) + colors.reset);
   }
 }
 

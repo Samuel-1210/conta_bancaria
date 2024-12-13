@@ -1,8 +1,14 @@
+// Importando a classe Conta, que é a classe base para contas bancárias
+
 import { Conta } from "./Conta";
 
+// A classe ContaCorrente herda de Conta e representa uma conta do tipo Corrente
 export class ContaCorrente extends Conta {
   private _limite: number;
 
+  // Construtor da classe ContaCorrente
+  // Parâmetros: numero, agencia, tipo, titular, saldo e limite
+  // O construtor chama o construtor da classe base (Conta) usando `super` e inicializa o valor do limite
   constructor(
     numero: number,
     agencia: number,
@@ -37,6 +43,12 @@ export class ContaCorrente extends Conta {
 
   public visualizar() {
     super.visualizar();
-    console.log(`Limite da Conta: ${this._limite}`);
+    console.log(`Limite da Conta: ${formatToBRL(this._limite)}`);
   }
+}
+function formatToBRL(value: number): string {
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(value);
 }
