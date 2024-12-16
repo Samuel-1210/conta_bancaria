@@ -5,7 +5,15 @@ import { ContaPoupanca } from "./src/model/ContaPoupanca";
 import { ContaController } from "./src/controller/ContaController";
 
 export function main() {
-  let opcao, numero, agencia, tipo, saldo, limite, aniversario: number;
+  let opcao,
+    numero,
+    agencia,
+    tipo,
+    saldo,
+    limite,
+    aniversario,
+    numeroDestino,
+    valor: number;
   let titular: string;
   const tipoContas = ["Conta Corrente", "Conta Poupanca"];
 
@@ -60,7 +68,8 @@ export function main() {
     console.log("       6- Sacar");
     console.log("       7- Depositar");
     console.log("       8- Transferir valores entre Contas");
-    console.log("       9- Sair");
+    console.log("       9- Buscar Conta por Titular");
+    console.log("       0- Sair");
     console.log("  ╔═════════════════════════════════════════════╗");
     console.log("║ ║        Entre com a opção desejada         ║ ║");
     console.log("╚═════════════════════════════════════════════╝");
@@ -69,7 +78,7 @@ export function main() {
     console.log(colors.fg.red, "", colors.reset);
     opcao = readlinesync.questionInt(colors.fg.magentastrong + "");
 
-    if (opcao == 9) {
+    if (opcao == 0) {
       console.log(
         colors.fg.magenta,
         "\n VESTIDO BANK - PROTEGIDO CONTRA A ECONOMIA"
@@ -214,10 +223,26 @@ export function main() {
         break;
       case 6:
         console.log(colors.fg.magenta, "\n\nSaque\n\n", colors.reset);
+
+        console.log("Digite o número da conta: ");
+        numero = readlinesync.questionInt("");
+
+        console.log("Digite o valor do Saque: ");
+        valor = readlinesync.questionFloat("");
+
+        contas.sacar(numero, valor);
         keyPress();
         break;
       case 7:
         console.log(colors.fg.magenta, "\n\nDepósito\n\n", colors.reset);
+        console.log("Digite o número da conta: ");
+        numero = readlinesync.questionInt("");
+
+        console.log("Digite o valor do Depósito: ");
+        valor = readlinesync.questionFloat("");
+
+        contas.depositar(numero, valor);
+
         keyPress();
         break;
       case 8:
@@ -226,8 +251,36 @@ export function main() {
           "\n\nTransferência entre Contas\n\n",
           colors.reset
         );
+
+        console.log("Digite o número da conta de origem: ");
+        numero = readlinesync.questionInt("");
+
+        console.log("Digite o número da conta de destino: ");
+        numeroDestino = readlinesync.questionInt("");
+
+        console.log("Digite o valor da Transferência: ");
+        valor = readlinesync.questionFloat("");
+
+        contas.transferir(numero, numeroDestino, valor);
+
         keyPress();
         break;
+      case 9:
+        console.log(
+          colors.fg.magenta,
+          "\nConsulta pelo Titular\n\n",
+          colors.reset
+        );
+        console.log(
+          colors.fg.magenta,
+          "\nDigite o nome do Titular: ",
+          colors.reset
+        );
+        titular = readlinesync.question();
+
+        contas.procurarPorTitular(titular);
+
+        keyPress();
       default:
         console.log(colors.fg.magenta, "\nOpção Inválida!\n", colors.reset);
         keyPress();
@@ -258,7 +311,11 @@ export function sobre(): void {
 // Função que aguarda o pressionamento de uma tecla para continuar
 function keyPress(): void {
   console.log(colors.reset, "");
-  console.log("\nPressione enter para continuar...");
+  console.log(
+    colors.fg.magentastrong,
+    "\nPressione enter para continuar...",
+    colors.reset
+  );
   readlinesync.prompt();
 }
 // Chama a função principal para iniciar o programa
