@@ -1,5 +1,6 @@
 // Importando a classe Conta, que é a classe base para contas bancárias
 
+import { colors } from "../util/Colors";
 import { Conta } from "./Conta";
 
 // A classe ContaCorrente herda de Conta e representa uma conta do tipo Corrente
@@ -43,7 +44,11 @@ export class ContaCorrente extends Conta {
 
   public visualizar() {
     super.visualizar();
-    console.log(`Limite da Conta: ${formatToBRL(this._limite)}`);
+    console.log(
+      colors.fg.magenta +
+        `Limite da Conta: ${formatToBRL(this._limite)}` +
+        colors.reset
+    );
   }
 }
 function formatToBRL(value: number): string {

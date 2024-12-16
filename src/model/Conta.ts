@@ -97,7 +97,7 @@ export abstract class Conta {
     console.log(
       "*****************************************************" + colors.reset
     );
-    console.log(colors.fg.magenta, "Numero da Conta: " + this._numero);
+    console.log(colors.fg.magenta + "Numero da Conta: " + this._numero);
     console.log("Agência: " + this._agencia);
     console.log("Tipo da Conta: " + tipo);
     console.log("Titular: " + this._titular);

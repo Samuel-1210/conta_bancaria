@@ -1,5 +1,6 @@
 // Importando a classe Conta, que é a classe base para contas bancárias
 
+import { colors } from "../util/Colors";
 import { Conta } from "./Conta";
 
 // A classe ContaPoupanca herda de Conta e representa uma conta do tipo Poupança
@@ -36,6 +37,10 @@ export class ContaPoupanca extends Conta {
 
   public visualizar() {
     super.visualizar();
-    console.log(`Dia do aniversário: ${this._aniversario}`);
+    console.log(
+      colors.fg.magenta +
+        `Dia do aniversário: ${this._aniversario}` +
+        colors.reset
+    );
   }
 }
