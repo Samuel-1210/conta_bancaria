@@ -145,7 +145,6 @@ Transfere um valor de uma conta para outra, respeitando os saldos e limites.
 
 
 <div align="center">
-   <img src="https://imgur.com/a/IFnkjBg" title="source: imgur.com" width="90%"/>
+   <img src="https://i.imgur.com/np8dkcW.png" title="source: imgur.com" width="90%"/>
 </div>
 
-https://i.imgur.com/np8dkcW
